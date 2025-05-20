@@ -1,0 +1,16 @@
+.list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 20px;
+}
+
+.item {
+  text-align: center;
+}
+
+.photo {
+  width: 100%;
+  border-radius: 6px;
+}
