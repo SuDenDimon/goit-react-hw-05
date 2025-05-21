@@ -1,5 +1,5 @@
-import { useParams, useLocation, Link, Routes, Route, Outlet } from 'react-router-dom';
-import { useEffect, useState, Suspense } from 'react';
+import { useParams, useLocation, Link, Outlet } from 'react-router-dom';
+import { useEffect, useRef, useState, Suspense } from 'react';
 import { getMovieDetails } from '../../services/tmdbAPI';
 
 import css from './MovieDetailsPage.module.css';
@@ -7,7 +7,7 @@ import css from './MovieDetailsPage.module.css';
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
   const location = useLocation();
-  const backLink = location.state?.from || '/movies';
+  const backLinkRef = useRef(location.state?.from || '/movies');
 
   const [movie, setMovie] = useState(null);
 
@@ -24,7 +24,7 @@ export default function MovieDetailsPage() {
 
   return (
     <div className={css.page}>
-      <Link to={backLink} className={css.back}>← Go back</Link>
+      <Link to={backLinkRef.current} className={css.back}>← Go back</Link>
 
       <div className={css.details}>
         <img src={posterUrl} alt={title} className={css.poster} />
